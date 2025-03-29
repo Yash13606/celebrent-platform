@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
@@ -89,19 +88,19 @@ const CreateEvent: React.FC = () => {
   return (
     <ProtectedRoute>
       <Navbar />
-      <div className="min-h-screen bg-gray-50 py-12">
+      <div className="min-h-screen bg-gray-900 py-12">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8">
-            <CalendarDays className="h-12 w-12 mx-auto text-event-primary" />
-            <h1 className="mt-4 text-3xl font-extrabold text-gray-900">
+            <CalendarDays className="h-12 w-12 mx-auto text-purple-400" />
+            <h1 className="mt-4 text-3xl font-extrabold text-white">
               Create a New Event
             </h1>
-            <p className="mt-2 text-gray-600">
+            <p className="mt-2 text-gray-400">
               Fill in the details below to create your event
             </p>
           </div>
           
-          <div className="bg-white shadow-lg rounded-lg p-8">
+          <div className="bg-gray-800 shadow-lg rounded-lg p-8 border border-gray-700">
             <form onSubmit={handleSubmit}>
               <div className="space-y-6">
                 <div>
@@ -180,20 +179,22 @@ const CreateEvent: React.FC = () => {
                 </div>
                 
                 <div>
-                  <Label htmlFor="artist">Artist</Label>
+                  <Label htmlFor="artist" className="text-white">Artist</Label>
                   <Select 
                     value={formData.artist} 
                     onValueChange={(value) => handleSelectChange("artist", value)}
                   >
-                    <SelectTrigger id="artist">
+                    <SelectTrigger id="artist" className="bg-gray-700 text-white border-gray-600">
                       <SelectValue placeholder="Select artist" />
                     </SelectTrigger>
-                    <SelectContent>
+                    <SelectContent className="bg-gray-700 text-white border-gray-600">
                       <SelectItem value="Travis Scott">Travis Scott</SelectItem>
                       <SelectItem value="Seedhe Maut">Seedhe Maut</SelectItem>
                       <SelectItem value="The Weeknd">The Weeknd</SelectItem>
                       <SelectItem value="Arijit Singh">Arijit Singh</SelectItem>
                       <SelectItem value="Diljit Dosanjh">Diljit Dosanjh</SelectItem>
+                      <SelectItem value="Kendrick Lamar">Kendrick Lamar</SelectItem>
+                      <SelectItem value="Karan Aujla">Karan Aujla</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
@@ -247,7 +248,7 @@ const CreateEvent: React.FC = () => {
                 <div className="pt-4">
                   <Button
                     type="submit"
-                    className="w-full bg-event-primary hover:bg-event-primary/90"
+                    className="w-full bg-purple-600 hover:bg-purple-700 text-white"
                     disabled={isSubmitting}
                   >
                     {isSubmitting ? (

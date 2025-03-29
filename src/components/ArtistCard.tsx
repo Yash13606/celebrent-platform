@@ -12,7 +12,7 @@ interface ArtistCardProps {
 
 const ArtistCard: React.FC<ArtistCardProps> = ({ artist }) => {
   return (
-    <Card className="overflow-hidden h-full flex flex-col hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+    <Card className="overflow-hidden h-full flex flex-col hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 bg-gray-800 border-gray-700 text-white">
       <div className="h-60 overflow-hidden relative">
         <img
           src={artist.imageUrl}
@@ -25,26 +25,26 @@ const ArtistCard: React.FC<ArtistCardProps> = ({ artist }) => {
       </div>
       
       <CardContent className="pt-6 flex-grow">
-        <Badge className="mb-3 bg-event-primary hover:bg-event-accent transition-colors duration-300">{artist.genre}</Badge>
-        <p className="text-muted-foreground text-sm line-clamp-3">{artist.bio}</p>
+        <Badge className="mb-3 bg-purple-600 hover:bg-purple-700 transition-colors duration-300">{artist.genre}</Badge>
+        <p className="text-gray-400 text-sm line-clamp-3">{artist.bio}</p>
         
         {artist.upcomingEvents && artist.upcomingEvents.length > 0 && (
           <div className="mt-4 transform transition-all duration-300 hover:translate-x-1">
             <div className="flex items-center mb-2">
-              <Calendar className="h-4 w-4 mr-2 text-event-primary" />
-              <span className="text-sm font-medium">Upcoming Events</span>
+              <Calendar className="h-4 w-4 mr-2 text-purple-400" />
+              <span className="text-sm font-medium text-white">Upcoming Events</span>
             </div>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-sm text-gray-400">
               {artist.upcomingEvents.length} upcoming show{artist.upcomingEvents.length > 1 ? 's' : ''}
             </p>
           </div>
         )}
       </CardContent>
       
-      <CardFooter className="border-t pt-4">
+      <CardFooter className="border-t border-gray-700 pt-4">
         <Link 
           to={`/artists/${artist.id}`}
-          className="w-full bg-event-primary text-white py-2 rounded-md text-center hover:bg-event-accent transition-colors duration-300 transform hover:scale-105"
+          className="w-full bg-purple-600 text-white py-2 rounded-md text-center hover:bg-purple-700 transition-colors duration-300 transform hover:scale-105"
         >
           View Artist
         </Link>

@@ -63,13 +63,13 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				// Event portal custom colors
+				// Event portal custom colors - updated for dark theme
 				event: {
-					primary: '#8B5CF6',
-					secondary: '#7E69AB', 
-					dark: '#1A1F2C',
-					light: '#F1F0FB',
-					accent: '#D946EF'
+					primary: '#8B5CF6', // Purple
+					secondary: '#7E69AB', // Muted purple
+					dark: '#1A1F2C', // Dark blue-gray
+					light: '#F1F0FB', // Very light purple
+					accent: '#D946EF' // Pink
 				}
 			},
 			borderRadius: {

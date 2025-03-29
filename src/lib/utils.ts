@@ -26,13 +26,15 @@ export function truncateText(text: string, maxLength: number) {
 }
 
 export function getImageUrl(name: string) {
-  // Map artist names to image URLs (could be extended)
+  // Map artist names to image URLs (updated with proper images)
   const artistImages: Record<string, string> = {
     "Travis Scott": "https://media.pitchfork.com/photos/5c7d4c1b4101df3df85c41e5/1:1/w_600/Travis%20Scott.jpg",
     "Seedhe Maut": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/SeedheMaut.jpg/330px-SeedheMaut.jpg",
     "The Weeknd": "https://media.pitchfork.com/photos/5a8991d5a466b4177dcc8131/1:1/w_600/weeknd.jpg",
     "Arijit Singh": "https://rollingstoneindia.com/wp-content/uploads/2022/10/Arijit-Singh-3.jpg",
-    "Diljit Dosanjh": "https://media.vogue.in/wp-content/uploads/2023/05/diljit-square.jpg"
+    "Diljit Dosanjh": "https://media.vogue.in/wp-content/uploads/2023/05/diljit-square.jpg",
+    "Kendrick Lamar": "https://www.rollingstone.com/wp-content/uploads/2022/05/kendrick-lamar-big-steppers-tour.jpg",
+    "Karan Aujla": "https://www.billboard.com/wp-content/uploads/2023/07/karan-aujla-2023-billboard-exclusive-1548.jpg"
   };
   
   return artistImages[name] || "https://images.unsplash.com/photo-1618160702438-9b02ab6515c9";
