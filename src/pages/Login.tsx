@@ -8,6 +8,7 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { CalendarDays, Loader2 } from "lucide-react";
 import Navbar from "@/components/Navbar";
+import { motion } from "framer-motion";
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState("");
@@ -31,6 +32,7 @@ const Login: React.FC = () => {
       await login(email, password);
       navigate("/");
     } catch (error: any) {
+      console.error("Login error:", error);
       setError(error.message || "Failed to log in");
     } finally {
       setIsLoading(false);
@@ -40,55 +42,81 @@ const Login: React.FC = () => {
   return (
     <>
       <Navbar />
-      <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+      <div className="min-h-screen bg-gray-900 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-md">
-          <div className="flex justify-center">
-            <CalendarDays className="h-12 w-12 text-event-primary" />
-          </div>
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-            Sign in to your account
-          </h2>
-          <p className="mt-2 text-center text-sm text-gray-600">
+          <motion.div 
+            className="flex justify-center"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <CalendarDays className="h-12 w-12 text-purple-500" />
+          </motion.div>
+          <motion.h2 
+            className="mt-6 text-center text-3xl font-extrabold text-white"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+          >
+            Sign in to EventSphere
+          </motion.h2>
+          <motion.p 
+            className="mt-2 text-center text-sm text-gray-400"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
             Or{" "}
-            <Link to="/signup" className="font-medium text-event-primary hover:text-event-primary/80">
+            <Link to="/signup" className="font-medium text-purple-400 hover:text-purple-300">
               create a new account
             </Link>
-          </p>
+          </motion.p>
         </div>
 
-        <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-          <Card>
+        <motion.div 
+          className="mt-8 sm:mx-auto sm:w-full sm:max-w-md"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+        >
+          <Card className="bg-gray-800 border-gray-700 text-white shadow-xl shadow-purple-500/10">
             <CardHeader>
-              <CardTitle>Login</CardTitle>
-              <CardDescription>
+              <CardTitle className="text-white">Login</CardTitle>
+              <CardDescription className="text-gray-400">
                 Enter your credentials to access your account
               </CardDescription>
             </CardHeader>
             <CardContent>
               <form onSubmit={handleSubmit} className="space-y-6">
                 {error && (
-                  <div className="bg-destructive/15 text-destructive text-sm p-3 rounded-md">
+                  <motion.div 
+                    className="bg-red-500/20 text-red-200 text-sm p-3 rounded-md"
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: 'auto' }}
+                    transition={{ duration: 0.3 }}
+                  >
                     {error}
-                  </div>
+                  </motion.div>
                 )}
                 
                 <div className="space-y-2">
-                  <Label htmlFor="email">Email</Label>
+                  <Label htmlFor="email" className="text-gray-200">Email</Label>
                   <Input
                     id="email"
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
+                    className="bg-gray-700 border-gray-600 text-white focus:border-purple-500 focus:ring-purple-500"
                   />
                 </div>
 
                 <div className="space-y-2">
                   <div className="flex items-center justify-between">
-                    <Label htmlFor="password">Password</Label>
+                    <Label htmlFor="password" className="text-gray-200">Password</Label>
                     <Link
                       to="/forgot-password"
-                      className="text-sm font-medium text-event-primary hover:text-event-primary/80"
+                      className="text-sm font-medium text-purple-400 hover:text-purple-300"
                     >
                       Forgot password?
                     </Link>
@@ -99,12 +127,13 @@ const Login: React.FC = () => {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required
+                    className="bg-gray-700 border-gray-600 text-white focus:border-purple-500 focus:ring-purple-500"
                   />
                 </div>
 
                 <Button
                   type="submit"
-                  className="w-full bg-event-primary hover:bg-event-primary/90"
+                  className="w-full bg-purple-600 hover:bg-purple-700 text-white"
                   disabled={isLoading}
                 >
                   {isLoading ? (
@@ -121,11 +150,11 @@ const Login: React.FC = () => {
               <div className="mt-6">
                 <div className="relative">
                   <div className="absolute inset-0 flex items-center">
-                    <div className="w-full border-t border-gray-300"></div>
+                    <div className="w-full border-t border-gray-700"></div>
                   </div>
                   <div className="relative flex justify-center text-sm">
-                    <span className="px-2 bg-white text-gray-500">
-                      Demo accounts
+                    <span className="px-2 bg-gray-800 text-gray-400">
+                      Quick login options
                     </span>
                   </div>
                 </div>
@@ -133,7 +162,7 @@ const Login: React.FC = () => {
                 <div className="mt-6 grid grid-cols-2 gap-3">
                   <Button
                     variant="outline"
-                    className="w-full"
+                    className="w-full bg-gray-700 text-gray-200 border-gray-600 hover:bg-gray-600"
                     onClick={() => {
                       setEmail("user@example.com");
                       setPassword("password123");
@@ -143,10 +172,10 @@ const Login: React.FC = () => {
                   </Button>
                   <Button
                     variant="outline"
-                    className="w-full"
+                    className="w-full bg-gray-700 text-gray-200 border-gray-600 hover:bg-gray-600"
                     onClick={() => {
-                      setEmail("admin@example.com");
-                      setPassword("password123");
+                      setEmail("admin@gmail.com");
+                      setPassword("admin");
                     }}
                   >
                     Admin Account
@@ -154,19 +183,19 @@ const Login: React.FC = () => {
                 </div>
               </div>
             </CardContent>
-            <CardFooter className="flex justify-center">
-              <p className="text-sm text-gray-600">
+            <CardFooter className="flex justify-center border-t border-gray-700 pt-6">
+              <p className="text-sm text-gray-400">
                 Don't have an account?{" "}
                 <Link
                   to="/signup"
-                  className="font-medium text-event-primary hover:text-event-primary/80"
+                  className="font-medium text-purple-400 hover:text-purple-300"
                 >
                   Sign up
                 </Link>
               </p>
             </CardFooter>
           </Card>
-        </div>
+        </motion.div>
       </div>
     </>
   );

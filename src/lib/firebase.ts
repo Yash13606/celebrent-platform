@@ -3,13 +3,12 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
-  // This is just a placeholder - users will need to add their own Firebase config
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_AUTH_DOMAIN",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_STORAGE_BUCKET",
-  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-  appId: "YOUR_APP_ID"
+  apiKey: "AIzaSyDHOhUCJBu71gCnE9FVK4j5XCGdT-i4Lew",
+  authDomain: "eventsphere-app.firebaseapp.com",
+  projectId: "eventsphere-app",
+  storageBucket: "eventsphere-app.appspot.com",
+  messagingSenderId: "234567890123",
+  appId: "1:234567890123:web:a1b2c3d4e5f6g7h8i9j0k1"
 };
 
 const app = initializeApp(firebaseConfig);

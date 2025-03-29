@@ -1,5 +1,5 @@
 
-const API_URL = "https://your-backend-url.com/api"; // This should be replaced with the actual backend URL
+const API_URL = "https://api.eventsphere.com/api"; // This would be replaced with the actual backend URL
 
 export interface Event {
   id: string;
@@ -31,28 +31,28 @@ export interface Artist {
 const mockEvents: Event[] = [
   {
     id: "1",
-    title: "Astroworld Tour",
-    description: "Travis Scott's explosive live show comes to town with his Astroworld Tour, featuring spectacular visuals and energy.",
-    date: "2025-10-18", // Updated to October 18, 2025
+    title: "Circus Maxima",
+    description: "Travis Scott's explosive live show comes to town with his Circus Maxima Tour, featuring spectacular visuals and energy.",
+    date: "2025-10-18",
     time: "20:00",
     venue: "Madison Square Garden, New York",
     organizer: "Live Nation",
     artist: "Travis Scott",
-    imageUrl: "https://media.pitchfork.com/photos/5c7d4c1b4101df3df85c41e5/1:1/w_600/Travis%20Scott.jpg",
+    imageUrl: "https://imgs.search.brave.com/VNUeHgn7dy_oHCn1DdzfrRYoNwbUWLzMNImddBALlsY/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzLzJlLzY4/LzIzLzJlNjgyMzMy/NDE5ZjcxNDU3NzFl/YWEyNjEyNWIwMTBi/LmpwZw",
     price: 120,
     capacity: 20000,
     registered: 15780
   },
   {
     id: "2",
-    title: "Nayaab Live Experience",
+    title: "NH7 Weekender",
     description: "Seedhe Maut brings their critically acclaimed album Nayaab to life with a full live band experience.",
-    date: "2025-06-15", // Updated to after May 2025
+    date: "2025-06-15",
     time: "19:30",
     venue: "Indira Gandhi Stadium, Delhi",
     organizer: "Azadi Records",
     artist: "Seedhe Maut",
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/SeedheMaut.jpg/330px-SeedheMaut.jpg",
+    imageUrl: "https://imgs.search.brave.com/5O_7jBtzJvzkATnUjGZjywHOlnas6GrFF3dhoXM7d6o/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/aGlyZTRldmVudC5j/b20vYXBwcGFuZWwv/YXNzZXRzL2FydGlz/dGltYWdlL2FydGlz/dHBob3RvLzYtNjY0/ZGUwZmFhM2UyNi53/ZWJw",
     price: 80,
     capacity: 10000,
     registered: 8500
@@ -61,12 +61,12 @@ const mockEvents: Event[] = [
     id: "3",
     title: "After Hours Till Dawn",
     description: "The Weeknd's worldwide tour featuring songs from his After Hours and Dawn FM albums.",
-    date: "2025-07-15", // Updated to after May 2025
+    date: "2025-07-15",
     time: "21:00",
     venue: "SoFi Stadium, Los Angeles",
     organizer: "Live Nation",
     artist: "The Weeknd",
-    imageUrl: "https://media.pitchfork.com/photos/5a8991d5a466b4177dcc8131/1:1/w_600/weeknd.jpg",
+    imageUrl: "https://imgs.search.brave.com/yiptVqS7NdBaN4SaRT9OCZkoqjIuDJMRlxf8nn6eObY/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9wcmV2/aWV3LnJlZGQuaXQv/YWZ0ZXItaG91cnMt/dGlsLWRhd24tMjAy/NS11cy10b3VyLWNv/bmZpcm1lZC12MC1w/MTdua2pwcGdjZ2Ux/LmpwZWc_d2lkdGg9/NjQwJmNyb3A9c21h/cnQmYXV0bz13ZWJw/JnM9NDU4ZTA3MGQ0/ZjM1MjM3NmM1NjUx/NTgxNGExM2FkMWIy/ODFhZWJjMQ",
     price: 150,
     capacity: 70000,
     registered: 65000
@@ -75,12 +75,12 @@ const mockEvents: Event[] = [
     id: "4",
     title: "Arijit Singh Live",
     description: "India's leading vocalist Arijit Singh performs his greatest hits in an emotional live show.",
-    date: "2025-08-10", // Updated to after May 2025
+    date: "2025-08-10",
     time: "18:30",
     venue: "DY Patil Stadium, Mumbai",
     organizer: "BookMyShow Live",
     artist: "Arijit Singh",
-    imageUrl: "https://rollingstoneindia.com/wp-content/uploads/2022/10/Arijit-Singh-3.jpg",
+    imageUrl: "https://imgs.search.brave.com/5UwB6mwIITEBciSUgP2gKbwXV-hQ5bjRI0winJpTi6w/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9yZXMu/Y2xvdWRpbmFyeS5j/b20vZHd6bXN2cDdm/L2ltYWdlL3VwbG9h/ZC9mX2F1dG8sd18x/MjgwL2NfY3JvcCxn/X2N1c3RvbS92MTc0/MTI0MjQ1NS9rY2xq/N3BjY3NiMnlmZHlw/MWsyYS5qcGc",
     price: 100,
     capacity: 40000,
     registered: 38000
@@ -89,12 +89,12 @@ const mockEvents: Event[] = [
     id: "5",
     title: "Dil-Luminati Tour",
     description: "Diljit Dosanjh brings his electrifying performance and Punjabi hits to the global stage.",
-    date: "2025-09-20", // Updated to after May 2025
+    date: "2025-09-20",
     time: "20:00",
     venue: "Rogers Arena, Vancouver",
     organizer: "Live Nation",
     artist: "Diljit Dosanjh",
-    imageUrl: "https://media.vogue.in/wp-content/uploads/2023/05/diljit-square.jpg",
+    imageUrl: "https://imgs.search.brave.com/RwW6jJiYJYh6GNJG6SvjV4mwaDRxHgYPdlVTXIA6G4o/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/cHVuamFiaWZyb250/LmNvbS93cC1jb250/ZW50L3VwbG9hZHMv/MjAyMy8xMS9kaWxq/aXQtZG9zYW5qaC1k/aS1sbHVtaW5hdGku/anBn",
     price: 110,
     capacity: 15000,
     registered: 12000
@@ -108,24 +108,10 @@ const mockEvents: Event[] = [
     venue: "United Center, Chicago",
     organizer: "Live Nation",
     artist: "Kendrick Lamar",
-    imageUrl: "https://www.rollingstone.com/wp-content/uploads/2022/05/kendrick-lamar-big-steppers-tour.jpg",
+    imageUrl: "https://imgs.search.brave.com/leIMWWj8CAKoL-YNBfTYRpkziXIMYrwZlmjF4IHDan0/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/YmlsbGJvYXJkLmNv/bS93cC1jb250ZW50/L3VwbG9hZHMvMjAy/NC8wNS9LZW5kcmlj/ay1MYW1hci0yMDIy/LWdsYXN0b25idXJ5/LWEtYmlsbGJvYXJk/LTgtMTU0OC5qcGc_/dz05NDImaD02MjMm/Y3JvcD0x",
     price: 135,
     capacity: 23000,
     registered: 19500
-  },
-  {
-    id: "7",
-    title: "Karan Aujla: It Was All A Dream Tour",
-    description: "Karan Aujla brings his chart-topping Punjabi hits to a massive arena production with special guests.",
-    date: "2025-08-25",
-    time: "19:00",
-    venue: "Scotiabank Arena, Toronto",
-    organizer: "Live Nation",
-    artist: "Karan Aujla",
-    imageUrl: "https://www.billboard.com/wp-content/uploads/2023/07/karan-aujla-2023-billboard-exclusive-1548.jpg",
-    price: 95,
-    capacity: 18000,
-    registered: 15200
   }
 ];
 
@@ -133,51 +119,44 @@ const mockArtists: Artist[] = [
   {
     id: "1",
     name: "Travis Scott",
-    imageUrl: "https://media.pitchfork.com/photos/5c7d4c1b4101df3df85c41e5/1:1/w_600/Travis%20Scott.jpg",
+    imageUrl: "https://imgs.search.brave.com/VNUeHgn7dy_oHCn1DdzfrRYoNwbUWLzMNImddBALlsY/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzLzJlLzY4/LzIzLzJlNjgyMzMy/NDE5ZjcxNDU3NzFl/YWEyNjEyNWIwMTBi/LmpwZw",
     genre: "Hip-Hop/Rap",
     bio: "Jacques Bermon Webster II, known professionally as Travis Scott, is an American rapper, singer, songwriter, and record producer. His musical style has been described as a fusion of traditional hip hop, lo-fi and ambient."
   },
   {
     id: "2",
     name: "Seedhe Maut",
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/SeedheMaut.jpg/330px-SeedheMaut.jpg",
+    imageUrl: "https://imgs.search.brave.com/5O_7jBtzJvzkATnUjGZjywHOlnas6GrFF3dhoXM7d6o/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/aGlyZTRldmVudC5j/b20vYXBwcGFuZWwv/YXNzZXRzL2FydGlz/dGltYWdlL2FydGlz/dHBob3RvLzYtNjY0/ZGUwZmFhM2UyNi53/ZWJw",
     genre: "Hip-Hop/Rap",
     bio: "Seedhe Maut is a Delhi-based hip-hop duo composed of rappers Encore ABJ and Calm. They are known for their technical flows, wordplay, and storytelling abilities in both Hindi and English."
   },
   {
     id: "3",
     name: "The Weeknd",
-    imageUrl: "https://media.pitchfork.com/photos/5a8991d5a466b4177dcc8131/1:1/w_600/weeknd.jpg",
+    imageUrl: "https://imgs.search.brave.com/yiptVqS7NdBaN4SaRT9OCZkoqjIuDJMRlxf8nn6eObY/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9wcmV2/aWV3LnJlZGQuaXQv/YWZ0ZXItaG91cnMt/dGlsLWRhd24tMjAy/NS11cy10b3VyLWNv/bmZpcm1lZC12MC1w/MTdua2pwcGdjZ2Ux/LmpwZWc_d2lkdGg9/NjQwJmNyb3A9c21h/cnQmYXV0bz13ZWJw/JnM9NDU4ZTA3MGQ0/ZjM1MjM3NmM1NjUx/NTgxNGExM2FkMWIy/ODFhZWJjMQ",
     genre: "R&B/Pop",
     bio: "Abel Makkonen Tesfaye, known professionally as the Weeknd, is a Canadian singer, songwriter, and record producer. He is known for his sonic versatility and dark lyricism, his music explores escapism, romance, and melancholia, and is often inspired by personal experiences."
   },
   {
     id: "4",
     name: "Arijit Singh",
-    imageUrl: "https://rollingstoneindia.com/wp-content/uploads/2022/10/Arijit-Singh-3.jpg",
+    imageUrl: "https://imgs.search.brave.com/5UwB6mwIITEBciSUgP2gKbwXV-hQ5bjRI0winJpTi6w/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9yZXMu/Y2xvdWRpbmFyeS5j/b20vZHd6bXN2cDdm/L2ltYWdlL3VwbG9h/ZC9mX2F1dG8sd18x/MjgwL2NfY3JvcCxn/X2N1c3RvbS92MTc0/MTI0MjQ1NS9rY2xq/N3BjY3NiMnlmZHlw/MWsyYS5qcGc",
     genre: "Playback Singing",
     bio: "Arijit Singh is an Indian singer and music composer. He sings predominantly in Hindi and Bengali, but has also performed in various other Indian languages. He is the recipient of a National Award and six Filmfare Awards."
   },
   {
     id: "5",
     name: "Diljit Dosanjh",
-    imageUrl: "https://media.vogue.in/wp-content/uploads/2023/05/diljit-square.jpg",
+    imageUrl: "https://imgs.search.brave.com/RwW6jJiYJYh6GNJG6SvjV4mwaDRxHgYPdlVTXIA6G4o/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/cHVuamFiaWZyb250/LmNvbS93cC1jb250/ZW50L3VwbG9hZHMv/MjAyMy8xMS9kaWxq/aXQtZG9zYW5qaC1k/aS1sbHVtaW5hdGku/anBn",
     genre: "Punjabi/Bollywood",
     bio: "Diljit Dosanjh is an Indian singer, actor, television presenter and social media personality who works in Punjabi and Hindi cinema. He is recognised as one of the leading artists in the Punjabi music industry."
   },
   {
     id: "6",
     name: "Kendrick Lamar",
-    imageUrl: "https://www.rollingstone.com/wp-content/uploads/2022/05/kendrick-lamar-big-steppers-tour.jpg",
+    imageUrl: "https://imgs.search.brave.com/leIMWWj8CAKoL-YNBfTYRpkziXIMYrwZlmjF4IHDan0/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/YmlsbGJvYXJkLmNv/bS93cC1jb250ZW50/L3VwbG9hZHMvMjAy/NC8wNS9LZW5kcmlj/ay1MYW1hci0yMDIy/LWdsYXN0b25idXJ5/LWEtYmlsbGJvYXJk/LTgtMTU0OC5qcGc_/dz05NDImaD02MjMm/Y3JvcD0x",
     genre: "Hip-Hop/Rap",
     bio: "Kendrick Lamar Duckworth is an American rapper, songwriter, and record producer. He is widely recognized as one of the most influential rappers of his generation and has received numerous accolades, including 14 Grammy Awards, two American Music Awards, and a Pulitzer Prize for Music."
-  },
-  {
-    id: "7",
-    name: "Karan Aujla",
-    imageUrl: "https://www.billboard.com/wp-content/uploads/2023/07/karan-aujla-2023-billboard-exclusive-1548.jpg",
-    genre: "Punjabi",
-    bio: "Karan Aujla is an Indian-Canadian singer, rapper and songwriter primarily associated with Punjabi music. He is known for his hit singles and collaborations with international artists, bringing Punjabi music to global audiences."
   }
 ];
 
@@ -232,5 +211,47 @@ export const fetchArtist = async (id: string): Promise<Artist | undefined> => {
   
   return new Promise((resolve) => {
     setTimeout(() => resolve(artist), 500);
+  });
+};
+
+// Auth helpers for simulating backend authentication
+export const mockRegisterUser = async (email: string, password: string): Promise<{ user: { email: string }, token: string }> => {
+  // In a real backend, this would create a user in the database
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve({
+        user: { email },
+        token: "mock-auth-token-" + Math.random().toString(36).substring(2)
+      });
+    }, 1000);
+  });
+};
+
+export const mockLoginUser = async (email: string, password: string): Promise<{ user: { email: string }, token: string }> => {
+  // Special admin case
+  if (email === "admin@gmail.com" && password === "admin") {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve({
+          user: { email: "admin@gmail.com" },
+          token: "mock-admin-token-" + Math.random().toString(36).substring(2)
+        });
+      }, 800);
+    });
+  }
+
+  // In a real backend, this would verify credentials
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      // Basic validation
+      if (email && password.length > 3) {
+        resolve({
+          user: { email },
+          token: "mock-auth-token-" + Math.random().toString(36).substring(2)
+        });
+      } else {
+        reject(new Error("Invalid credentials"));
+      }
+    }, 1000);
   });
 };
