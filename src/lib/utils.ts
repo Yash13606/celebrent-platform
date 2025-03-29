@@ -16,8 +16,17 @@ export function formatDate(dateStr: string) {
 }
 
 export function formatTime(timeStr: string) {
-  // Simple time formatter
-  return timeStr;
+  // Format time with proper AM/PM
+  try {
+    const [hours, minutes] = timeStr.split(':');
+    const hour = parseInt(hours, 10);
+    const ampm = hour >= 12 ? 'PM' : 'AM';
+    const formattedHour = hour % 12 || 12;
+    return `${formattedHour}:${minutes} ${ampm}`;
+  } catch (error) {
+    // Return original if parsing fails
+    return timeStr;
+  }
 }
 
 export function truncateText(text: string, maxLength: number) {
@@ -53,4 +62,19 @@ export function getRandomGradient() {
   ];
   
   return gradients[Math.floor(Math.random() * gradients.length)];
+}
+
+// Animation utility function to add delay
+export function getAnimationDelay(index: number, baseDelay: number = 0.1) {
+  return `${baseDelay * index}s`;
+}
+
+// Format currency
+export function formatCurrency(amount: number) {
+  return new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0
+  }).format(amount);
 }

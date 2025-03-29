@@ -19,7 +19,7 @@ const Events: React.FC = () => {
   const [filteredEvents, setFilteredEvents] = useState<Event[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
-  const [artistFilter, setArtistFilter] = useState("");
+  const [artistFilter, setArtistFilter] = useState("all");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -44,7 +44,7 @@ const Events: React.FC = () => {
                             event.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
                             event.venue.toLowerCase().includes(searchTerm.toLowerCase());
       
-      const matchesArtist = artistFilter ? event.artist === artistFilter : true;
+      const matchesArtist = artistFilter === "all" ? true : event.artist === artistFilter;
       
       return matchesSearch && matchesArtist;
     });
@@ -100,7 +100,7 @@ const Events: React.FC = () => {
                   <SelectValue placeholder="All Artists" />
                 </SelectTrigger>
                 <SelectContent className="bg-gray-700 border-gray-600 text-white">
-                  <SelectItem value="">All Artists</SelectItem>
+                  <SelectItem value="all">All Artists</SelectItem>
                   {artists.map(artist => (
                     <SelectItem key={artist} value={artist}>
                       {artist}
