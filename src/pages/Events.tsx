@@ -58,17 +58,17 @@ const Events: React.FC = () => {
     <div className="min-h-screen bg-gray-50">
       <Navbar />
       
-      {/* Page Header */}
-      <div className="bg-white shadow">
+      {/* Page Header - Now with animation */}
+      <div className="bg-white shadow animate-fade-in">
         <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <div className="flex justify-center">
-              <CalendarDays className="h-12 w-12 text-event-primary" />
+              <CalendarDays className="h-12 w-12 text-event-primary animate-pulse-slow" />
             </div>
-            <h1 className="mt-4 text-4xl font-extrabold text-gray-900">
+            <h1 className="mt-4 text-4xl font-extrabold text-gray-900 animate-fade-in" style={{animationDelay: "0.2s"}}>
               Upcoming Events
             </h1>
-            <p className="mt-3 max-w-2xl mx-auto text-xl text-gray-500">
+            <p className="mt-3 max-w-2xl mx-auto text-xl text-gray-500 animate-fade-in" style={{animationDelay: "0.4s"}}>
               Discover and register for exciting events featuring your favorite artists
             </p>
           </div>
@@ -76,8 +76,8 @@ const Events: React.FC = () => {
       </div>
       
       {/* Filters */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
-        <div className="bg-white shadow rounded-lg p-6 mb-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 animate-fade-in" style={{animationDelay: "0.6s"}}>
+        <div className="bg-white shadow rounded-lg p-6 mb-8 hover:shadow-lg transition-shadow duration-300">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <Label htmlFor="search" className="mb-2 block">Search Events</Label>
@@ -121,12 +121,14 @@ const Events: React.FC = () => {
           </div>
         ) : filteredEvents.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredEvents.map(event => (
-              <EventCard key={event.id} event={event} />
+            {filteredEvents.map((event, index) => (
+              <div key={event.id} className="animate-fade-in hover-scale" style={{animationDelay: `${0.1 * index}s`}}>
+                <EventCard event={event} />
+              </div>
             ))}
           </div>
         ) : (
-          <div className="text-center py-20">
+          <div className="text-center py-20 animate-fade-in">
             <h3 className="text-xl font-medium text-gray-900 mb-2">No events found</h3>
             <p className="text-gray-500">
               Try adjusting your search or filter to find what you're looking for.

@@ -7,6 +7,7 @@ import EventCard from "@/components/EventCard";
 import ArtistCard from "@/components/ArtistCard";
 import Navbar from "@/components/Navbar";
 import { Loader2, Music, CalendarDays, ArrowRight } from "lucide-react";
+import { getImageUrl } from "@/lib/utils";
 
 const Index: React.FC = () => {
   const [events, setEvents] = useState<Event[]>([]);
@@ -37,7 +38,7 @@ const Index: React.FC = () => {
     <div className="min-h-screen bg-gray-50">
       <Navbar />
 
-      {/* Hero Section */}
+      {/* Hero Section with Animation */}
       <section className="relative bg-gradient-to-r from-event-dark to-event-primary py-24 overflow-hidden">
         <div className="absolute inset-0 bg-black opacity-50 z-0"></div>
         <div 
@@ -48,19 +49,37 @@ const Index: React.FC = () => {
             backgroundPosition: "center" 
           }}
         ></div>
+        
+        {/* Animated particles */}
+        <div className="absolute inset-0 z-0">
+          {[...Array(20)].map((_, i) => (
+            <div 
+              key={i}
+              className="absolute rounded-full bg-white opacity-20 animate-pulse-slow"
+              style={{
+                top: `${Math.random() * 100}%`,
+                left: `${Math.random() * 100}%`,
+                width: `${Math.random() * 10 + 5}px`,
+                height: `${Math.random() * 10 + 5}px`,
+                animationDelay: `${Math.random() * 3}s`
+              }}
+            ></div>
+          ))}
+        </div>
+        
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center max-w-3xl mx-auto">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight animate-fade-in">
               Discover and Create Unforgettable Events
             </h1>
-            <p className="text-lg md:text-xl text-white/90 mb-8">
+            <p className="text-lg md:text-xl text-white/90 mb-8 animate-fade-in" style={{animationDelay: "0.2s"}}>
               Find the hottest shows, register for events, or create your own in minutes.
             </p>
-            <div className="flex flex-col sm:flex-row justify-center gap-4">
+            <div className="flex flex-col sm:flex-row justify-center gap-4 animate-fade-in" style={{animationDelay: "0.4s"}}>
               <Button 
                 size="lg" 
                 asChild 
-                className="bg-white text-event-primary hover:bg-white/90"
+                className="bg-white text-event-primary hover:bg-white/90 transform transition-transform hover:scale-105"
               >
                 <Link to="/events">Browse Events</Link>
               </Button>
@@ -68,7 +87,7 @@ const Index: React.FC = () => {
                 size="lg" 
                 asChild
                 variant="outline"
-                className="text-white border-white hover:bg-white/10"
+                className="text-white border-white hover:bg-white/10 transform transition-transform hover:scale-105"
               >
                 <Link to="/create-event">Create Event</Link>
               </Button>
@@ -80,12 +99,12 @@ const Index: React.FC = () => {
       {/* Featured Events */}
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between mb-10">
+          <div className="flex items-center justify-between mb-10 animate-fade-in">
             <div className="flex items-center">
-              <CalendarDays className="h-8 w-8 text-event-primary mr-3" />
+              <CalendarDays className="h-8 w-8 text-event-primary mr-3 animate-pulse-slow" />
               <h2 className="text-3xl font-bold text-event-dark">Featured Events</h2>
             </div>
-            <Link to="/events" className="flex items-center text-event-primary hover:text-event-primary/80">
+            <Link to="/events" className="flex items-center text-event-primary hover:text-event-primary/80 transition-all hover:translate-x-1">
               View All
               <ArrowRight className="h-4 w-4 ml-1" />
             </Link>
@@ -97,23 +116,52 @@ const Index: React.FC = () => {
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {events.map(event => (
-                <EventCard key={event.id} event={event} />
+              {events.map((event, index) => (
+                <div key={event.id} className="animate-fade-in" style={{animationDelay: `${0.2 * index}s`}}>
+                  <EventCard event={event} />
+                </div>
               ))}
             </div>
           )}
         </div>
       </section>
 
+      {/* Travis Scott Feature Section */}
+      <section className="py-16 bg-gradient-to-r from-purple-900 to-event-primary text-white overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            <div className="animate-fade-in">
+              <h2 className="text-4xl font-bold mb-4">Featuring Travis Scott</h2>
+              <p className="text-white/90 mb-6">
+                Don't miss the chance to see Travis Scott live in concert. His electrifying performances and chart-topping hits make this a must-see event.
+              </p>
+              <Button 
+                asChild 
+                className="bg-white text-event-primary hover:bg-white/90 transform transition hover:scale-105"
+              >
+                <Link to="/artists/travis-scott">View Details</Link>
+              </Button>
+            </div>
+            <div className="rounded-lg overflow-hidden shadow-2xl transform hover:scale-105 transition-transform duration-500 animate-fade-in" style={{animationDelay: "0.3s"}}>
+              <img 
+                src={getImageUrl("Travis Scott")} 
+                alt="Travis Scott" 
+                className="w-full h-auto"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Featured Artists */}
       <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between mb-10">
+          <div className="flex items-center justify-between mb-10 animate-fade-in">
             <div className="flex items-center">
-              <Music className="h-8 w-8 text-event-primary mr-3" />
+              <Music className="h-8 w-8 text-event-primary mr-3 animate-pulse-slow" />
               <h2 className="text-3xl font-bold text-event-dark">Featured Artists</h2>
             </div>
-            <Link to="/artists" className="flex items-center text-event-primary hover:text-event-primary/80">
+            <Link to="/artists" className="flex items-center text-event-primary hover:text-event-primary/80 transition-all hover:translate-x-1">
               View All
               <ArrowRight className="h-4 w-4 ml-1" />
             </Link>
@@ -125,25 +173,49 @@ const Index: React.FC = () => {
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {artists.map(artist => (
-                <ArtistCard key={artist.id} artist={artist} />
+              {artists.map((artist, index) => (
+                <div key={artist.id} className="animate-fade-in" style={{animationDelay: `${0.2 * index}s`}}>
+                  <ArtistCard artist={artist} />
+                </div>
               ))}
             </div>
           )}
         </div>
       </section>
 
-      {/* Call to Action */}
-      <section className="py-16 bg-event-primary text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold mb-6">Ready to host your own event?</h2>
-          <p className="text-xl mb-8 max-w-2xl mx-auto">
+      {/* Call to Action - Animated */}
+      <section className="py-16 bg-event-primary text-white overflow-hidden relative">
+        {/* Animated background */}
+        <div className="absolute inset-0 bg-gradient-to-r from-event-primary to-event-accent opacity-80"></div>
+        
+        {/* Animated shapes */}
+        <div className="absolute inset-0 overflow-hidden">
+          {[...Array(5)].map((_, i) => (
+            <div 
+              key={i}
+              className="absolute rounded-full bg-white opacity-10"
+              style={{
+                top: `${Math.random() * 100}%`,
+                left: `${Math.random() * 100}%`,
+                width: `${Math.random() * 300 + 50}px`,
+                height: `${Math.random() * 300 + 50}px`,
+                transform: `scale(${Math.random() * 0.5 + 0.5})`,
+                animation: `pulse-slow ${Math.random() * 5 + 3}s infinite`
+              }}
+            ></div>
+          ))}
+        </div>
+        
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+          <h2 className="text-3xl font-bold mb-6 animate-fade-in">Ready to host your own event?</h2>
+          <p className="text-xl mb-8 max-w-2xl mx-auto animate-fade-in" style={{animationDelay: "0.2s"}}>
             Create and manage your events easily with our platform. Get started today!
           </p>
           <Button 
             size="lg" 
             asChild 
-            className="bg-white text-event-primary hover:bg-white/90"
+            className="bg-white text-event-primary hover:bg-white/90 animate-scale-in transform transition hover:scale-105"
+            style={{animationDelay: "0.4s"}}
           >
             <Link to="/create-event">Create Event</Link>
           </Button>

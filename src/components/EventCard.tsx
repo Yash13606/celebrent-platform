@@ -24,15 +24,15 @@ const EventCard: React.FC<EventCardProps> = ({ event }) => {
   const percentageFilled = ((event.registered || 0) / event.capacity) * 100;
 
   return (
-    <Card className="overflow-hidden h-full flex flex-col hover:shadow-lg transition-shadow duration-300">
+    <Card className="overflow-hidden h-full flex flex-col hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
       <div className="h-48 overflow-hidden relative">
         <img
           src={event.imageUrl}
           alt={event.title}
-          className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+          className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
         />
         <div className="absolute top-2 right-2">
-          <Badge className="bg-event-primary hover:bg-event-primary/90">
+          <Badge className="bg-event-primary hover:bg-event-primary/90 animate-pulse-slow">
             ${event.price}
           </Badge>
         </div>
@@ -42,29 +42,29 @@ const EventCard: React.FC<EventCardProps> = ({ event }) => {
         <h3 className="text-xl font-semibold mb-2 line-clamp-1">{event.title}</h3>
         <p className="text-muted-foreground text-sm mb-4 line-clamp-2">{event.description}</p>
         
-        <div className="flex items-center text-sm mb-2">
+        <div className="flex items-center text-sm mb-2 hover:text-event-primary transition-colors">
           <Calendar className="h-4 w-4 mr-2 text-event-primary" />
           <span>{formatDate(event.date)}</span>
         </div>
         
-        <div className="flex items-center text-sm mb-2">
+        <div className="flex items-center text-sm mb-2 hover:text-event-primary transition-colors">
           <Clock className="h-4 w-4 mr-2 text-event-primary" />
           <span>{event.time}</span>
         </div>
         
-        <div className="flex items-center text-sm mb-2">
+        <div className="flex items-center text-sm mb-2 hover:text-event-primary transition-colors">
           <MapPin className="h-4 w-4 mr-2 text-event-primary" />
           <span className="line-clamp-1">{event.venue}</span>
         </div>
         
-        <div className="flex items-center text-sm mb-2">
+        <div className="flex items-center text-sm mb-2 hover:text-event-primary transition-colors">
           <Users className="h-4 w-4 mr-2 text-event-primary" />
           <span>{event.registered || 0} / {event.capacity}</span>
         </div>
         
-        <div className="w-full bg-gray-200 rounded-full h-2 mt-2">
+        <div className="w-full bg-gray-200 rounded-full h-2 mt-2 overflow-hidden">
           <div 
-            className="bg-event-primary h-2 rounded-full" 
+            className="bg-event-primary h-2 rounded-full transition-all duration-1000 ease-in-out" 
             style={{ width: `${percentageFilled}%` }}
           ></div>
         </div>
@@ -73,7 +73,7 @@ const EventCard: React.FC<EventCardProps> = ({ event }) => {
       <CardFooter className="border-t pt-4">
         <Link 
           to={`/events/${event.id}`}
-          className="w-full bg-event-primary text-white py-2 rounded-md text-center hover:bg-event-primary/90 transition-colors"
+          className="w-full bg-event-primary text-white py-2 rounded-md text-center hover:bg-event-accent transition-colors duration-300 transform hover:scale-105"
         >
           View Details
         </Link>
