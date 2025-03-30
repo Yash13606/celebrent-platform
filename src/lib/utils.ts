@@ -37,7 +37,7 @@ export function truncateText(text: string, maxLength: number) {
 export function getImageUrl(name: string) {
   // Map artist names to image URLs with our updated images
   const artistImages: Record<string, string> = {
-    "Travis Scott": "https://imgs.search.brave.com/VNUeHgn7dy_oHCn1DdzfrRYoNwbUWLzMNImddBALlsY/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzLzJlLzY4/LzIzLzJlNjgyMzMy/NDE5ZjcxNDU3NzFl/YWEyNjEyNWIwMTBi/LmpwZw",
+    "Travis Scott": "https://imgs.search.brave.com/PBMfoCrCi_FUcZQmazY9ws8wTc1bVVISzdyDNejNB6k/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzL2ZlL2Ni/LzY2L2ZlY2I2NjE0/YzM0YTIyMDYwYmIx/OWY1MTAyNGExMzY3/LmpwZw",
     "Seedhe Maut": "https://imgs.search.brave.com/5O_7jBtzJvzkATnUjGZjywHOlnas6GrFF3dhoXM7d6o/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/aGlyZTRldmVudC5j/b20vYXBwcGFuZWwv/YXNzZXRzL2FydGlz/dGltYWdlL2FydGlz/dHBob3RvLzYtNjY0/ZGUwZmFhM2UyNi53/ZWJw",
     "The Weeknd": "https://imgs.search.brave.com/yiptVqS7NdBaN4SaRT9OCZkoqjIuDJMRlxf8nn6eObY/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9wcmV2/aWV3LnJlZGQuaXQv/YWZ0ZXItaG91cnMt/dGlsLWRhd24tMjAy/NS11cy10b3VyLWNv/bmZpcm1lZC12MC1w/MTdua2pwcGdjZ2Ux/LmpwZWc_d2lkdGg9/NjQwJmNyb3A9c21h/cnQmYXV0bz13ZWJw/JnM9NDU4ZTA3MGQ0/ZjM1MjM3NmM1NjUx/NTgxNGExM2FkMWIy/ODFhZWJjMQ",
     "Arijit Singh": "https://imgs.search.brave.com/5UwB6mwIITEBciSUgP2gKbwXV-hQ5bjRI0winJpTi6w/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9yZXMu/Y2xvdWRpbmFyeS5j/b20vZHd6bXN2cDdm/L2ltYWdlL3VwbG9h/ZC9mX2F1dG8sd18x/MjgwL2NfY3JvcCxn/X2N1c3RvbS92MTc0/MTI0MjQ1NS9rY2xq/N3BjY3NiMnlmZHlw/MWsyYS5qcGc",
@@ -68,11 +68,11 @@ export function getAnimationDelay(index: number, baseDelay: number = 0.1) {
   return `${baseDelay * index}s`;
 }
 
-// Format currency
+// Format currency in Rupees (₹)
 export function formatCurrency(amount: number) {
-  return new Intl.NumberFormat('en-US', {
+  return new Intl.NumberFormat('en-IN', {
     style: 'currency',
-    currency: 'USD',
+    currency: 'INR',
     minimumFractionDigits: 0,
     maximumFractionDigits: 0
   }).format(amount);
@@ -111,6 +111,20 @@ export const staggerContainer = {
     opacity: 1,
     transition: {
       staggerChildren: 0.1
+    }
+  }
+};
+
+// Scroll animation variants
+export const scrollReveal = {
+  hidden: { opacity: 0, y: 75 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      type: 'spring',
+      duration: 1.25,
+      delay: 0.1
     }
   }
 };

@@ -2,7 +2,7 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { 
-  CalendarDays, 
+  Music, 
   Menu, 
   User, 
   LogOut, 
@@ -22,6 +22,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { useAuth } from "@/contexts/AuthContext";
+import { motion } from "framer-motion";
 
 const Navbar: React.FC = () => {
   const { currentUser, logout } = useAuth();
@@ -42,8 +43,21 @@ const Navbar: React.FC = () => {
         <div className="flex justify-between h-16">
           <div className="flex items-center">
             <Link to="/" className="flex-shrink-0 flex items-center group">
-              <CalendarDays className="h-8 w-8 text-purple-500 group-hover:text-purple-400 transition-colors duration-300" />
-              <span className="ml-2 text-xl font-bold text-white group-hover:text-purple-400 transition-colors duration-300">EventSphere</span>
+              <motion.div 
+                initial={{ rotate: 0 }}
+                animate={{ rotate: 360 }}
+                transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+              >
+                <Music className="h-8 w-8 text-purple-500 group-hover:text-purple-400 transition-colors duration-300" />
+              </motion.div>
+              <motion.span 
+                className="ml-2 text-xl font-bold text-white group-hover:text-purple-400 transition-colors duration-300"
+                initial={{ opacity: 0, x: -10 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.3 }}
+              >
+                EventSphere
+              </motion.span>
             </Link>
             
             <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
@@ -85,7 +99,7 @@ const Navbar: React.FC = () => {
                     <span>Profile</span>
                   </DropdownMenuItem>
                   <DropdownMenuItem onClick={() => navigate("/my-events")} className="hover:bg-gray-700 cursor-pointer">
-                    <CalendarDays className="mr-2 h-4 w-4 text-purple-400" />
+                    <Music className="mr-2 h-4 w-4 text-purple-400" />
                     <span>My Events</span>
                   </DropdownMenuItem>
                   <DropdownMenuSeparator className="bg-gray-700" />
@@ -122,7 +136,7 @@ const Navbar: React.FC = () => {
                     Home
                   </Link>
                   <Link to="/events" className="flex items-center py-2 px-4 rounded-md hover:bg-gray-800 transition-colors duration-300">
-                    <CalendarDays className="mr-2 h-5 w-5 text-purple-400" />
+                    <Music className="mr-2 h-5 w-5 text-purple-400" />
                     Events
                   </Link>
                   <Link to="/artists" className="flex items-center py-2 px-4 rounded-md hover:bg-gray-800 transition-colors duration-300">
@@ -149,7 +163,7 @@ const Navbar: React.FC = () => {
                         Profile
                       </Link>
                       <Link to="/my-events" className="flex items-center py-2 px-4 rounded-md hover:bg-gray-800 transition-colors duration-300">
-                        <CalendarDays className="mr-2 h-5 w-5 text-purple-400" />
+                        <Music className="mr-2 h-5 w-5 text-purple-400" />
                         My Events
                       </Link>
                       <button 

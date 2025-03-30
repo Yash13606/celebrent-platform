@@ -5,6 +5,8 @@ import ArtistCard from "@/components/ArtistCard";
 import Navbar from "@/components/Navbar";
 import { Input } from "@/components/ui/input";
 import { Loader2, Music, Search } from "lucide-react";
+import ScrollRevealContainer from "@/components/ScrollRevealContainer";
+import { motion } from "framer-motion";
 
 const Artists: React.FC = () => {
   const [artists, setArtists] = useState<Artist[]>([]);
@@ -43,24 +45,39 @@ const Artists: React.FC = () => {
       <Navbar />
       
       {/* Page Header - Now with animation */}
-      <div className="bg-white shadow animate-fade-in">
+      <div className="bg-white shadow">
         <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
+          <ScrollRevealContainer className="text-center">
             <div className="flex justify-center">
-              <Music className="h-12 w-12 text-event-primary animate-pulse-slow" />
+              <motion.div
+                animate={{ rotate: 360 }}
+                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+              >
+                <Music className="h-12 w-12 text-event-primary" />
+              </motion.div>
             </div>
-            <h1 className="mt-4 text-4xl font-extrabold text-gray-900 animate-fade-in" style={{animationDelay: "0.2s"}}>
+            <motion.h1 
+              className="mt-4 text-4xl font-extrabold text-gray-900"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2, duration: 0.5 }}
+            >
               Featured Artists
-            </h1>
-            <p className="mt-3 max-w-2xl mx-auto text-xl text-gray-500 animate-fade-in" style={{animationDelay: "0.4s"}}>
+            </motion.h1>
+            <motion.p 
+              className="mt-3 max-w-2xl mx-auto text-xl text-gray-500"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4, duration: 0.5 }}
+            >
               Discover upcoming events featuring these incredible performers
-            </p>
-          </div>
+            </motion.p>
+          </ScrollRevealContainer>
         </div>
       </div>
       
       {/* Search */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 animate-fade-in" style={{animationDelay: "0.6s"}}>
+      <ScrollRevealContainer className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8" delay={0.6}>
         <div className="bg-white shadow rounded-lg p-6 mb-8 hover:shadow-lg transition-shadow duration-300">
           <div className="max-w-md mx-auto">
             <div className="relative">
@@ -74,7 +91,7 @@ const Artists: React.FC = () => {
             </div>
           </div>
         </div>
-      </div>
+      </ScrollRevealContainer>
       
       {/* Artist Listings */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
@@ -85,18 +102,18 @@ const Artists: React.FC = () => {
         ) : filteredArtists.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {filteredArtists.map((artist, index) => (
-              <div key={artist.id} className="animate-fade-in hover-scale" style={{animationDelay: `${0.1 * index}s`}}>
+              <ScrollRevealContainer key={artist.id} delay={0.1 * index} className="hover-scale">
                 <ArtistCard artist={artist} />
-              </div>
+              </ScrollRevealContainer>
             ))}
           </div>
         ) : (
-          <div className="text-center py-20 animate-fade-in">
+          <ScrollRevealContainer className="text-center py-20">
             <h3 className="text-xl font-medium text-gray-900 mb-2">No artists found</h3>
             <p className="text-gray-500">
               Try adjusting your search to find what you're looking for.
             </p>
-          </div>
+          </ScrollRevealContainer>
         )}
       </div>
     </div>

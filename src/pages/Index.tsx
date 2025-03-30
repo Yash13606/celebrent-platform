@@ -8,6 +8,8 @@ import ArtistCard from "@/components/ArtistCard";
 import Navbar from "@/components/Navbar";
 import { Loader2, Music, CalendarDays, ArrowRight } from "lucide-react";
 import { getImageUrl } from "@/lib/utils";
+import ScrollRevealContainer from "@/components/ScrollRevealContainer";
+import { motion } from "framer-motion";
 
 const Index: React.FC = () => {
   const [events, setEvents] = useState<Event[]>([]);
@@ -69,13 +71,28 @@ const Index: React.FC = () => {
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center max-w-3xl mx-auto">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight animate-fade-in">
+            <motion.h1 
+              className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight"
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7 }}
+            >
               Discover and Create Unforgettable Events
-            </h1>
-            <p className="text-lg md:text-xl text-white/90 mb-8 animate-fade-in" style={{animationDelay: "0.2s"}}>
+            </motion.h1>
+            <motion.p 
+              className="text-lg md:text-xl text-white/90 mb-8"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.7, delay: 0.3 }}
+            >
               Find the hottest shows, register for events, or create your own in minutes.
-            </p>
-            <div className="flex flex-col sm:flex-row justify-center gap-4 animate-fade-in" style={{animationDelay: "0.4s"}}>
+            </motion.p>
+            <motion.div 
+              className="flex flex-col sm:flex-row justify-center gap-4"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.5 }}
+            >
               <Button 
                 size="lg" 
                 asChild 
@@ -91,7 +108,7 @@ const Index: React.FC = () => {
               >
                 <Link to="/create-event">Create Event</Link>
               </Button>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -99,16 +116,18 @@ const Index: React.FC = () => {
       {/* Featured Events */}
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between mb-10 animate-fade-in">
-            <div className="flex items-center">
-              <CalendarDays className="h-8 w-8 text-event-primary mr-3 animate-pulse-slow" />
-              <h2 className="text-3xl font-bold text-event-dark">Featured Events</h2>
+          <ScrollRevealContainer>
+            <div className="flex items-center justify-between mb-10">
+              <div className="flex items-center">
+                <CalendarDays className="h-8 w-8 text-event-primary mr-3 animate-pulse-slow" />
+                <h2 className="text-3xl font-bold text-event-dark">Featured Events</h2>
+              </div>
+              <Link to="/events" className="flex items-center text-event-primary hover:text-event-primary/80 transition-all hover:translate-x-1">
+                View All
+                <ArrowRight className="h-4 w-4 ml-1" />
+              </Link>
             </div>
-            <Link to="/events" className="flex items-center text-event-primary hover:text-event-primary/80 transition-all hover:translate-x-1">
-              View All
-              <ArrowRight className="h-4 w-4 ml-1" />
-            </Link>
-          </div>
+          </ScrollRevealContainer>
 
           {isLoading ? (
             <div className="flex justify-center items-center py-20">
@@ -117,9 +136,9 @@ const Index: React.FC = () => {
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {events.map((event, index) => (
-                <div key={event.id} className="animate-fade-in" style={{animationDelay: `${0.2 * index}s`}}>
+                <ScrollRevealContainer key={event.id} delay={0.2 * index} distance={30}>
                   <EventCard event={event} />
-                </div>
+                </ScrollRevealContainer>
               ))}
             </div>
           )}
@@ -130,7 +149,7 @@ const Index: React.FC = () => {
       <section className="py-16 bg-gradient-to-r from-purple-900 to-event-primary text-white overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-            <div className="animate-fade-in">
+            <ScrollRevealContainer direction="left">
               <h2 className="text-4xl font-bold mb-4">Featuring Travis Scott</h2>
               <p className="text-white/90 mb-6">
                 Don't miss the chance to see Travis Scott live in concert. His electrifying performances and chart-topping hits make this a must-see event.
@@ -141,14 +160,16 @@ const Index: React.FC = () => {
               >
                 <Link to="/artists/travis-scott">View Details</Link>
               </Button>
-            </div>
-            <div className="rounded-lg overflow-hidden shadow-2xl transform hover:scale-105 transition-transform duration-500 animate-fade-in" style={{animationDelay: "0.3s"}}>
-              <img 
-                src={getImageUrl("Travis Scott")} 
-                alt="Travis Scott" 
-                className="w-full h-auto"
-              />
-            </div>
+            </ScrollRevealContainer>
+            <ScrollRevealContainer direction="right" delay={0.3}>
+              <div className="rounded-lg overflow-hidden shadow-2xl transform hover:scale-105 transition-transform duration-500">
+                <img 
+                  src="https://imgs.search.brave.com/PBMfoCrCi_FUcZQmazY9ws8wTc1bVVISzdyDNejNB6k/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzL2ZlL2Ni/LzY2L2ZlY2I2NjE0/YzM0YTIyMDYwYmIx/OWY1MTAyNGExMzY3/LmpwZw" 
+                  alt="Travis Scott" 
+                  className="w-full h-auto"
+                />
+              </div>
+            </ScrollRevealContainer>
           </div>
         </div>
       </section>
@@ -156,16 +177,18 @@ const Index: React.FC = () => {
       {/* Featured Artists */}
       <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between mb-10 animate-fade-in">
-            <div className="flex items-center">
-              <Music className="h-8 w-8 text-event-primary mr-3 animate-pulse-slow" />
-              <h2 className="text-3xl font-bold text-event-dark">Featured Artists</h2>
+          <ScrollRevealContainer>
+            <div className="flex items-center justify-between mb-10">
+              <div className="flex items-center">
+                <Music className="h-8 w-8 text-event-primary mr-3 animate-pulse-slow" />
+                <h2 className="text-3xl font-bold text-event-dark">Featured Artists</h2>
+              </div>
+              <Link to="/artists" className="flex items-center text-event-primary hover:text-event-primary/80 transition-all hover:translate-x-1">
+                View All
+                <ArrowRight className="h-4 w-4 ml-1" />
+              </Link>
             </div>
-            <Link to="/artists" className="flex items-center text-event-primary hover:text-event-primary/80 transition-all hover:translate-x-1">
-              View All
-              <ArrowRight className="h-4 w-4 ml-1" />
-            </Link>
-          </div>
+          </ScrollRevealContainer>
 
           {isLoading ? (
             <div className="flex justify-center items-center py-20">
@@ -174,9 +197,9 @@ const Index: React.FC = () => {
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {artists.map((artist, index) => (
-                <div key={artist.id} className="animate-fade-in" style={{animationDelay: `${0.2 * index}s`}}>
+                <ScrollRevealContainer key={artist.id} delay={0.2 * index} distance={30}>
                   <ArtistCard artist={artist} />
-                </div>
+                </ScrollRevealContainer>
               ))}
             </div>
           )}
@@ -207,18 +230,19 @@ const Index: React.FC = () => {
         </div>
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <h2 className="text-3xl font-bold mb-6 animate-fade-in">Ready to host your own event?</h2>
-          <p className="text-xl mb-8 max-w-2xl mx-auto animate-fade-in" style={{animationDelay: "0.2s"}}>
-            Create and manage your events easily with our platform. Get started today!
-          </p>
-          <Button 
-            size="lg" 
-            asChild 
-            className="bg-white text-event-primary hover:bg-white/90 animate-scale-in transform transition hover:scale-105"
-            style={{animationDelay: "0.4s"}}
-          >
-            <Link to="/create-event">Create Event</Link>
-          </Button>
+          <ScrollRevealContainer direction="up">
+            <h2 className="text-3xl font-bold mb-6">Ready to host your own event?</h2>
+            <p className="text-xl mb-8 max-w-2xl mx-auto">
+              Create and manage your events easily with our platform. Get started today!
+            </p>
+            <Button 
+              size="lg" 
+              asChild 
+              className="bg-white text-event-primary hover:bg-white/90 transform transition hover:scale-105"
+            >
+              <Link to="/create-event">Create Event</Link>
+            </Button>
+          </ScrollRevealContainer>
         </div>
       </section>
 
@@ -228,11 +252,11 @@ const Index: React.FC = () => {
           <div className="flex flex-col md:flex-row justify-between">
             <div className="mb-8 md:mb-0">
               <div className="flex items-center">
-                <CalendarDays className="h-8 w-8 text-event-primary" />
-                <span className="ml-2 text-xl font-bold">EventHub</span>
+                <Music className="h-8 w-8 text-event-primary" />
+                <span className="ml-2 text-xl font-bold">EventSphere</span>
               </div>
               <p className="mt-4 max-w-xs text-gray-400">
-                Discover and create unforgettable experiences with EventHub.
+                Discover and create unforgettable experiences with EventSphere.
               </p>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-8">
@@ -257,15 +281,14 @@ const Index: React.FC = () => {
               <div>
                 <h3 className="text-lg font-semibold mb-4">Contact</h3>
                 <ul className="space-y-2">
-                  <li className="text-gray-400">support@eventhub.com</li>
-                  <li className="text-gray-400">+1 (555) 123-4567</li>
-                  <li className="text-gray-400">123 Event St, New York, NY</li>
+                  <li className="text-gray-400">yashmarlecha13@gmail.com</li>
+                  <li className="text-gray-400">+91 9176566969</li>
                 </ul>
               </div>
             </div>
           </div>
           <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
-            <p>© {new Date().getFullYear()} EventHub. All rights reserved.</p>
+            <p>© {new Date().getFullYear()} EventSphere. All rights reserved.</p>
           </div>
         </div>
       </footer>

@@ -18,13 +18,16 @@ const ArtistCard: React.FC<ArtistCardProps> = ({ artist, index = 0 }) => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
+      whileHover={{ y: -10, transition: { duration: 0.3 } }}
     >
-      <Card className="overflow-hidden h-full flex flex-col hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 bg-gray-800 border-gray-700 text-white">
+      <Card className="overflow-hidden h-full flex flex-col hover:shadow-xl transition-all duration-300 bg-gray-800 border-gray-700 text-white">
         <div className="h-60 overflow-hidden relative group">
-          <img
+          <motion.img
             src={artist.imageUrl}
             alt={artist.name}
-            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+            className="w-full h-full object-cover"
+            whileHover={{ scale: 1.1 }}
+            transition={{ duration: 0.7 }}
           />
           <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
             <h3 className="text-white text-xl font-bold group-hover:text-purple-300 transition-colors duration-300">{artist.name}</h3>

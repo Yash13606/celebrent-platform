@@ -21,13 +21,16 @@ const EventCard: React.FC<EventCardProps> = ({ event, index = 0 }) => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
+      whileHover={{ y: -10, transition: { duration: 0.3 } }}
     >
-      <Card className="overflow-hidden h-full flex flex-col hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 bg-gray-800 border-gray-700 text-white">
+      <Card className="overflow-hidden h-full flex flex-col hover:shadow-xl transition-all duration-300 bg-gray-800 border-gray-700 text-white">
         <div className="h-48 overflow-hidden relative group">
-          <img
+          <motion.img
             src={event.imageUrl}
             alt={event.title}
-            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+            className="w-full h-full object-cover"
+            whileHover={{ scale: 1.1 }}
+            transition={{ duration: 0.7 }}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-70"></div>
           <div className="absolute top-2 right-2">
