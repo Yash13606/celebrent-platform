@@ -23,7 +23,8 @@ const ScrollRevealContainer: React.FC<ScrollRevealContainerProps> = ({
 }) => {
   const controls = useAnimation();
   const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once, threshold: 0.15 });
+  // Remove the threshold property as it's not accepted in the UseInViewOptions type
+  const inView = useInView(ref, { once });
 
   useEffect(() => {
     if (inView) {
