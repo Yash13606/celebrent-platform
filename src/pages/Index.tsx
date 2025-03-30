@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import EventCard from "@/components/EventCard";
 import ArtistCard from "@/components/ArtistCard";
 import Navbar from "@/components/Navbar";
-import { Loader2, Music, CalendarDays, ArrowRight } from "lucide-react";
+import { Loader2, Headphones, CalendarDays, ArrowRight } from "lucide-react";
 import { getImageUrl } from "@/lib/utils";
 import ScrollRevealContainer from "@/components/ScrollRevealContainer";
 import { motion } from "framer-motion";
@@ -180,7 +180,7 @@ const Index: React.FC = () => {
           <ScrollRevealContainer>
             <div className="flex items-center justify-between mb-10">
               <div className="flex items-center">
-                <Music className="h-8 w-8 text-event-primary mr-3 animate-pulse-slow" />
+                <Headphones className="h-8 w-8 text-event-primary mr-3 animate-pulse-slow" />
                 <h2 className="text-3xl font-bold text-event-dark">Featured Artists</h2>
               </div>
               <Link to="/artists" className="flex items-center text-event-primary hover:text-event-primary/80 transition-all hover:translate-x-1">
@@ -252,7 +252,7 @@ const Index: React.FC = () => {
           <div className="flex flex-col md:flex-row justify-between">
             <div className="mb-8 md:mb-0">
               <div className="flex items-center">
-                <Music className="h-8 w-8 text-event-primary" />
+                <Headphones className="h-8 w-8 text-event-primary" />
                 <span className="ml-2 text-xl font-bold">EventSphere</span>
               </div>
               <p className="mt-4 max-w-xs text-gray-400">

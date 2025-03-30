@@ -9,7 +9,8 @@ import {
   LogIn, 
   PlusCircle,
   Home,
-  Users
+  Users,
+  Headphones
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -48,7 +49,7 @@ const Navbar: React.FC = () => {
                 animate={{ rotate: 360 }}
                 transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
               >
-                <Music className="h-8 w-8 text-purple-500 group-hover:text-purple-400 transition-colors duration-300" />
+                <Headphones className="h-8 w-8 text-purple-500 group-hover:text-purple-400 transition-colors duration-300" />
               </motion.div>
               <motion.span 
                 className="ml-2 text-xl font-bold text-white group-hover:text-purple-400 transition-colors duration-300"

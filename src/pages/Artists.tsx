@@ -4,7 +4,7 @@ import { fetchArtists, Artist } from "@/lib/api";
 import ArtistCard from "@/components/ArtistCard";
 import Navbar from "@/components/Navbar";
 import { Input } from "@/components/ui/input";
-import { Loader2, Music, Search } from "lucide-react";
+import { Loader2, Headphones, Search } from "lucide-react";
 import ScrollRevealContainer from "@/components/ScrollRevealContainer";
 import { motion } from "framer-motion";
 
@@ -53,7 +53,7 @@ const Artists: React.FC = () => {
                 animate={{ rotate: 360 }}
                 transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
               >
-                <Music className="h-12 w-12 text-event-primary" />
+                <Headphones className="h-12 w-12 text-event-primary" />
               </motion.div>
             </div>
             <motion.h1 
