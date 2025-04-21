@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { fetchEvents, fetchArtists, Event, Artist } from "@/lib/api";
@@ -10,11 +9,18 @@ import { Loader2, Headphones, CalendarDays, ArrowRight } from "lucide-react";
 import { getImageUrl } from "@/lib/utils";
 import ScrollRevealContainer from "@/components/ScrollRevealContainer";
 import { motion } from "framer-motion";
+import { fetchHoneypotData, submitModelTraining } from "@/lib/honeypotApi";
+import { setupMonitoring } from "@/lib/monitoring";
 
 const Index: React.FC = () => {
   const [events, setEvents] = useState<Event[]>([]);
   const [artists, setArtists] = useState<Artist[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [honeypotData, setHoneypotData] = useState<any>(null);
+  const [hpLoading, setHpLoading] = useState(false);
+  const [hpError, setHpError] = useState<string | null>(null);
+  const [trainingLoading, setTrainingLoading] = useState(false);
+  const [trainingResult, setTrainingResult] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -36,11 +42,52 @@ const Index: React.FC = () => {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    const cleanup = setupMonitoring();
+    return cleanup;
+  }, []);
+
+  useEffect(() => {
+    const fetchHP = async () => {
+      setHpLoading(true);
+      setHpError(null);
+      try {
+        const data = await fetchHoneypotData();
+        setHoneypotData(data);
+      } catch (e: any) {
+        setHpError(e.message || "Failed to fetch honeypot data");
+      } finally {
+        setHpLoading(false);
+      }
+    };
+    fetchHP();
+  }, []);
+
+  async function handleModelTrain() {
+    setTrainingLoading(true);
+    setTrainingResult(null);
+    try {
+      const result = await submitModelTraining({
+        accuracy: 0.95,
+        precision: 0.93,
+        recall: 0.92,
+        samples: 500,
+        improvements: ["Better mobile bot detection", "Reduced false positives"],
+      });
+      setTrainingResult("Success! Model updated.");
+      console.log("Training submitted:", result);
+    } catch (err: any) {
+      setTrainingResult("Failed: " + (err.message || "Unknown error"));
+      console.error("Failed to submit training:", err);
+    } finally {
+      setTrainingLoading(false);
+    }
+  }
+
   return (
     <div className="min-h-screen bg-gray-50">
       <Navbar />
 
-      {/* Hero Section with Animation */}
       <section className="relative bg-gradient-to-r from-event-dark to-event-primary py-24 overflow-hidden">
         <div className="absolute inset-0 bg-black opacity-50 z-0"></div>
         <div 
@@ -52,7 +99,6 @@ const Index: React.FC = () => {
           }}
         ></div>
         
-        {/* Animated particles */}
         <div className="absolute inset-0 z-0">
           {[...Array(20)].map((_, i) => (
             <div 
@@ -113,7 +159,6 @@ const Index: React.FC = () => {
         </div>
       </section>
 
-      {/* Featured Events */}
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollRevealContainer>
@@ -145,7 +190,6 @@ const Index: React.FC = () => {
         </div>
       </section>
 
-      {/* Travis Scott Feature Section */}
       <section className="py-16 bg-gradient-to-r from-purple-900 to-event-primary text-white overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
@@ -174,7 +218,6 @@ const Index: React.FC = () => {
         </div>
       </section>
 
-      {/* Featured Artists */}
       <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollRevealContainer>
@@ -206,12 +249,9 @@ const Index: React.FC = () => {
         </div>
       </section>
 
-      {/* Call to Action - Animated */}
       <section className="py-16 bg-event-primary text-white overflow-hidden relative">
-        {/* Animated background */}
         <div className="absolute inset-0 bg-gradient-to-r from-event-primary to-event-accent opacity-80"></div>
         
-        {/* Animated shapes */}
         <div className="absolute inset-0 overflow-hidden">
           {[...Array(5)].map((_, i) => (
             <div 
@@ -246,7 +286,40 @@ const Index: React.FC = () => {
         </div>
       </section>
 
-      {/* Footer */}
+      <section className="py-16 bg-white">
+        <div className="max-w-2xl mx-auto px-4 mb-8 border border-gray-200 rounded-lg shadow">
+          <h3 className="font-bold text-lg mb-2">Site Security Stats (Honeypot API)</h3>
+          {hpLoading && <p className="text-gray-500">Loading honeypot data...</p>}
+          {hpError && <p className="text-red-600">⚠️ {hpError}</p>}
+          {honeypotData && honeypotData.metrics && (
+            <div className="flex flex-col gap-2">
+              <div className="flex items-center gap-2">
+                <span className="font-medium">Total Bots Detected:</span>
+                <span data-testid="totalBots">{honeypotData.metrics.detected_bots}</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="font-medium">Model Accuracy:</span>
+                <span data-testid="accuracy">
+                  {(honeypotData.metrics.accuracy * 100).toFixed(2)}%
+                </span>
+              </div>
+            </div>
+          )}
+        </div>
+        <div className="max-w-2xl mx-auto px-4">
+          <button
+            className="bg-event-primary text-white font-semibold rounded px-4 py-2 mt-2 hover:bg-event-dark transition"
+            onClick={handleModelTrain}
+            disabled={trainingLoading}
+          >
+            {trainingLoading ? "Submitting..." : "Submit Example Model Training"}
+          </button>
+          {trainingResult && (
+            <div className="mt-2 text-sm">{trainingResult}</div>
+          )}
+        </div>
+      </section>
+
       <footer className="bg-event-dark text-white py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row justify-between">
